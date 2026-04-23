@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: sitrakaa <sitrakaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 15:18:55 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/04/21 15:20:40 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/04/23 06:30:51 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,31 +75,62 @@ static void	define_positions(t_stack **stack_a, int *temp_arr, int size)
 	}
 }
 
-static void	three_chunk_push(t_stack **stack_a, t_stack **stack_b, int size)
+static int	ft_sqrt(int size)
+{
+	int	i;
+
+	i = 1;
+	while (i * i < size)
+		i++;
+	return (i);
+}
+
+static void	chunk_push(t_stack **stack_a, t_stack **stack_b, int size)
 {
 	int		chunk;
+	int		nb_chunks;
+	int		chunk_size;
 	int		elements_in_chunk;
 	int		chunk_start;
 	int		chunk_end;
-	t_stack	*layer;
 
 	if (!stack_a || !*stack_a)
 		return ;
+	nb_chunks = ft_sqrt(size) / 2;
+	chunk_size = size / nb_chunks;
 	chunk = 1;
-	while (layer && chunk <= 3)
+	while (chunk <= nb_chunks)
 	{
+		chunk_start = (chunk - 1) * chunk_size;
+		if (chunk == nb_chunks)
+			chunk_end = size;
+		else
+			chunk_end = chunk * chunk_size;
+		elements_in_chunk = chunk_end - chunk_start;
 		while (elements_in_chunk > 0)
 		{
-			layer = *stack_a;
-    		if ((*stack_a)->position >= chunk_start && (*stack_a)->position < chunk_end)
-    		{
-        		pb(stack_a, stack_b);
-        		elements_in_chunk--;
-   			}
-    		else
-       			ra(stack_a);
+			if ((*stack_a)->position >= chunk_start && (*stack_a)->position < chunk_end)
+			{
+				pb(stack_a, stack_b);
+				elements_in_chunk--;
+			}
+			else
+				ra(stack_a);
 		}
 		chunk++;
+	}
+}
+
+static void	push_back_to_a(t_stack **stack_a, t_stack **stack_b)
+{
+	int		max;
+
+	while (*stack_b)
+	{
+		max = get_max_position(stack_b);
+		while ((*stack_b)->position != max)
+			rb(stack_b);
+		pa(stack_a, stack_b);
 	}
 }
 
@@ -115,5 +146,19 @@ void	medium_sort(t_stack **stack_a, t_stack **stack_b)
 	sort_arr(temp_arr, initial_size);
 	define_positions(stack_a, temp_arr, initial_size);
 	free(temp_arr);
-
+	chunk_push(stack_a, stack_b, initial_size);
+	push_back_to_a(stack_a, stack_b);
 }
+
+
+/*With 3 chunks on 500 numbers:
+
+Each chunk has ~166 elements
+To find the right element you rotate through up to 166 nodes each time
+That's a lot of wasted moves
+
+With √500 ≈ 11 chunks on 500 numbers:
+
+Each chunk has ~45 elements
+You rotate through at most 45 nodes to find the right element
+Way fewer moves*/

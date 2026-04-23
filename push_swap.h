@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sitrakaa <sitrakaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 16:43:33 by manoaran          #+#    #+#             */
-/*   Updated: 2026/04/20 15:26:20 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/04/23 06:15:45 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 void	simple_sort(t_stack **stack_a, t_stack **stack_b);
 void	medium_sort(t_stack **stack_a, t_stack **stack_b);
+int	get_max_position(t_stack **stack_b);
+int	get_min(t_stack *stack_a);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sa sb ss.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 15:17:59 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/04/15 14:03:17 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/04/23 09:36:30 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sa(t_stack **stack_a)
 {
 	int		temp;
 	t_stack	*top_layer;
-	
+
 	if (!stack_a || !top_layer || !top_layer->next)
 		return ;
 	top_layer = *stack_a;

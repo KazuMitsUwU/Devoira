@@ -6,7 +6,7 @@
 /*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 16:13:46 by manoaran          #+#    #+#             */
-/*   Updated: 2026/04/20 15:21:14 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/04/28 10:59:59 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,4 @@ void	add_at_bot(t_stack **stack, int value)
 	}
 	else
 		bot_layer = new_bot_layer;
-}
-
-void	stack_a_init(t_stack **stack_a, int argc, char **argv)
-{
-	int	i;
-
-	if (!argv[1])
-		return ;
-	i = 1;
-	while (i < argc)
-	{
-		add_on_top(stack_a, ft_atoi(argv[i]));
-		i++;
-	}
 }

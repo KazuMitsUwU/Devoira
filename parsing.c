@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder_metric.c                                  :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 14:04:57 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/01 14:06:53 by sitrakaa         ###   ########.fr       */
+/*   Created: 2026/04/28 10:59:28 by manoaran          #+#    #+#             */
+/*   Updated: 2026/04/28 11:00:11 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	disorder_metric(t_stack **stack_a)
+void	stack_a_init(t_stack **stack_a, int argc, char **argv)
 {
-	t_stack	*layer;
-	int		disorder;
+	int	i;
 
-	disorder = 0;
-	layer = *stack_a;
-	while (layer->next)
+	if (!argv[1])
+		return ;
+	i = 1;
+	while (i < argc)
 	{
-		if (layer->value > layer->next->value)
-			disorder++;
-		layer = layer->next;
+		add_on_top(stack_a, ft_atoi(argv[i]));
+		i++;
 	}
-	return (disorder);
 }

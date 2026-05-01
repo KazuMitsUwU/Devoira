@@ -6,7 +6,7 @@
 /*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 15:17:38 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/04/18 16:15:52 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/04/28 10:54:48 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	nb_ra(t_stack *stack_a, int min_value)
 	return (nb_of_ra);
 }
 
-void	simple_sort(t_stack **stack_a, t_stack **stack_b)
+void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	min_value;
 	int	rotations;

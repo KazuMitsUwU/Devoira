@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_maxandmin.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/23 09:36:42 by sitrakaa          #+#    #+#             */
+/*   Updated: 2026/04/23 09:37:04 by sitrakaa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	get_min(t_stack *stack_a)
@@ -14,7 +26,7 @@ int	get_min(t_stack *stack_a)
 	return (min_value);
 }
 
-int get_max_position(t_stack **stack_b)
+int	get_max_position(t_stack **stack_b)
 {
 	t_stack	*layer;
 	int		max;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   positions_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 09:41:43 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/04/28 10:22:28 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/04/30 09:45:50 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	*make_temp_arr(t_stack **stack_a, int size)
 	t_stack	*layer;
 
 	temp_arr = malloc(sizeof(int) * size);
+	if (!temp_arr)
+		return (NULL);
 	layer = *stack_a;
 	arr_i = 0;
 	while (layer)

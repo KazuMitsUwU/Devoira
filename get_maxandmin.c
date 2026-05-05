@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_maxandmin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 09:36:42 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/04/23 09:37:04 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/04/29 19:28:15 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

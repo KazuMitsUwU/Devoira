@@ -6,24 +6,35 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 14:04:57 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/01 14:06:53 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/04 20:59:34 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	disorder_metric(t_stack **stack_a)
+float	disorder_metric(t_stack **stack_a)
 {
-	t_stack	*layer;
-	int		disorder;
+	t_stack	*i;
+	t_stack	*j;
+	int		mistakes;
+	int		total_pairs;
 
-	disorder = 0;
-	layer = *stack_a;
-	while (layer->next)
+	mistakes = 0;
+	total_pairs = 0;
+	i = *stack_a;
+	while (i && i->next)
 	{
-		if (layer->value > layer->next->value)
-			disorder++;
-		layer = layer->next;
+		j = i->next;
+		while (j)
+		{
+			total_pairs++;
+			if (i->value > j->value)
+				mistakes++;
+			j = j->next;
+		}
+		i = i->next;
 	}
-	return (disorder);
+	if (total_pairs == 0)
+		return (0.0f);
+	return ((float)mistakes / total_pairs);
 }

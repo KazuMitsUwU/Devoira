@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 16:43:33 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/01 14:06:24 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/04 20:59:56 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	rrr(t_stack **stack_a, t_stack **stack_b);
 void	insertion_sort(t_stack **stack_a, t_stack **stack_b);
 void	chunk_based_sort(t_stack **stack_a, t_stack **stack_b);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b);
-int		disorder_metric(t_stack **stack_a);
+float	disorder_metric(t_stack **stack_a);
 
 #endif

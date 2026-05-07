@@ -6,13 +6,13 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 16:14:53 by manoaran          #+#    #+#             */
-/*   Updated: 2026/04/23 09:36:29 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/07 09:01:20 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(t_stack **stack_a)
+void	rra(t_stack **stack_a, t_bench *bench)
 {
 	int		value;
 	t_stack	*bot_layer;
@@ -29,15 +29,18 @@ void	rra(t_stack **stack_a)
 	old_bot = bot_layer->next;
 	bot_layer->next = NULL;
 	free(old_bot);
+	bench->rra++;
 }
 
-void	rrb(t_stack **stack_b)
+void	rrb(t_stack **stack_b, t_bench *bench)
 {
-	rra(stack_b);
+	rra(stack_b, bench);
+	bench->rra--;
+	bench->rrb++;
 }
 
-void	rrr(t_stack **stack_a, t_stack **stack_b)
+void	rrr(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
-	rra(stack_a);
-	rra(stack_b);
+	rra(stack_a, bench);
+	rra(stack_b, bench);
 }

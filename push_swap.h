@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/20 16:43:33 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/04 20:59:56 by sitrakaa         ###   ########.fr       */
+/*   Created: 2026/05/07 09:04:53 by sitrakaa          #+#    #+#             */
+/*   Updated: 2026/05/07 09:51:36 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 # include "libft/libft.h"
 
 typedef struct s_stack
@@ -23,6 +23,31 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
+typedef struct s_bench
+{
+	float	disorder;
+	int		total_ops;
+	int		sa;
+	int		sb;
+	int		ss;
+	int		pa;
+	int		pb;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
+	int		total;
+}			t_bench;
+
+typedef struct s_combine
+{
+	t_bench	*bench;
+	t_stack	**stack_a;
+	t_stack	**stack_b;
+}			t_combine;
+
 int		nb_of_layer(t_stack **stack);
 void	add_on_top(t_stack **stack, int value);
 void	add_at_bot(t_stack **stack, int value);
@@ -33,20 +58,20 @@ int		get_min(t_stack *stack_a);
 int		get_max_position(t_stack **stack_b);
 int		ft_sqrt(int size);
 void	stack_a_init(t_stack **stack_a, int argc, char **argv);
-void	sa(t_stack **stack_a);
-void	sb(t_stack **stack_b);
-void	ss(t_stack **stack_a, t_stack **stack_b);
-void	pa(t_stack **stack_a, t_stack **stack_b);
-void	pb(t_stack **stack_a, t_stack **stack_b);
-void	ra(t_stack **stack_a);
-void	rb(t_stack **stack_b);
-void	rr(t_stack **stack_a, t_stack **stack_b);
-void	rra(t_stack **stack_a);
-void	rrb(t_stack **stack_b);
-void	rrr(t_stack **stack_a, t_stack **stack_b);
-void	insertion_sort(t_stack **stack_a, t_stack **stack_b);
-void	chunk_based_sort(t_stack **stack_a, t_stack **stack_b);
-void	radix_sort(t_stack **stack_a, t_stack **stack_b);
+void	sa(t_combine *c);
+void	sb(t_combine *c);
+void	ss(t_combine *c);
+void	pa(t_combine *c);
+void	pb(t_combine *c);
+void	ra(t_combine *c);
+void	rb(t_combine *c);
+void	rr(t_combine *c);
+void	rra(t_combine *c);
+void	rrb(t_combine *c);
+void	rrr(t_combine *c);
+void	insertion_sort(t_combine *c);
+void	chunk_based_sort(t_combine *c);
+void	radix_sort(t_combine *c);
 float	disorder_metric(t_stack **stack_a);
 
 #endif

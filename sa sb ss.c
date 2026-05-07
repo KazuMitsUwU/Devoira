@@ -6,32 +6,43 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 15:17:59 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/04/23 09:36:30 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/07 09:51:22 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack **stack_a)
+void	sa(t_combine *c)
 {
 	int		temp;
 	t_stack	*top_layer;
 
-	if (!stack_a || !top_layer || !top_layer->next)
+	top_layer = *c->stack_a;
+	if (!c->stack_a || !top_layer || !top_layer->next)
 		return ;
-	top_layer = *stack_a;
 	temp = top_layer->value;
 	top_layer->value = top_layer->next->value;
 	top_layer->next->value = temp;
+	c->bench->sa++;
 }
 
-void	sb(t_stack **stack_b)
+void	sb(t_combine *c)
 {
-	sa(stack_b);
+	t_combine	swapped;
+
+	swapped.stack_a = c->stack_b;
+	swapped.stack_b = c->stack_a;
+	swapped.bench = c->bench;
+	sa(&swapped);
+	c->bench->sa--;
+	c->bench->sb++;
 }
 
-void	ss(t_stack **stack_a, t_stack **stack_b)
+void	ss(t_combine *c)
 {
-	sa(stack_a);
-	sa(stack_b);
+	sa(c);
+	sb(c);
+	c->bench->sa--;
+	c->bench->sb--;
+	c->bench->ss++;
 }

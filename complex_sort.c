@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 15:18:51 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/04/28 11:08:44 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/07 09:51:40 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,49 @@ static int	get_max_bits(int size)
 	return (bits);
 }
 
-static void	radix_pass(t_stack **stack_a, t_stack **stack_b, int bit, int size)
+static void	init_positions(t_stack **stack_a, int size)
+{
+	int	*temp_arr;
+
+	temp_arr = make_temp_arr(stack_a, size);
+	sort_arr(temp_arr, size);
+	define_positions(stack_a, temp_arr, size);
+	free(temp_arr);
+}
+
+static void	radix_pass(t_combine *c, int bit, int size)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		if (((*stack_a)->position >> bit) & 1)
-			ra(stack_a);
+		if (((*c->stack_a)->position >> bit) & 1)
+		{
+			ra(c->stack_a);
+			c->bench->ra++;
+		}
 		else
-			pb(stack_a, stack_b);
+		{
+			pb(c);
+		}
 		i++;
 	}
-	while (*stack_b)
-		pa(stack_a, stack_b);
+	while (*c->stack_b)
+		pa(c);
 }
 
-void	radix_sort(t_stack **stack_a, t_stack **stack_b)
+void	radix_sort(t_combine *c)
 {
-	int		size;
-	int		max_bits;
-	int		bit;
-	int		*temp_arr;
+	int	size;
+	int	bit;
 
-	size = nb_of_layer(stack_a);
-	temp_arr = make_temp_arr(stack_a, size);
-	sort_arr(temp_arr, size);
-	define_positions(stack_a, temp_arr, size);
-	free(temp_arr);
-	max_bits = get_max_bits(size);
+	size = nb_of_layer(c->stack_a);
+	init_positions(c->stack_a, size);
 	bit = 0;
-	while (bit < max_bits)
+	while (bit < get_max_bits(size))
 	{
-		radix_pass(stack_a, stack_b, bit, size);
+		radix_pass(c, bit, size);
 		bit++;
 	}
 }

@@ -3,41 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ra rb rr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:15:50 by manoaran          #+#    #+#             */
-/*   Updated: 2026/04/15 14:31:01 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/07 09:50:48 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack **stack_a)
+void	ra(t_combine *c)
 {
 	int		value;
 	t_stack	*top_layer;
-	t_stack	*bot_layer;
 	t_stack	*old_top;
 
-	top_layer = *stack_a;
+	top_layer = *c->stack_a;
 	if (!top_layer || !top_layer->next)
 		return ;
 	value = top_layer->value;
-	add_at_bot(stack_a, value);
+	add_at_bot(c->stack_a, value);
 	top_layer = top_layer->next;
 	old_top = top_layer->prev;
-	*stack_a = top_layer;
+	*c->stack_a = top_layer;
 	top_layer->prev = NULL;
 	free(old_top);
+	c->bench->ra++;
 }
 
-void	rb(t_stack **stack_b)
+void	rb(t_combine *c)
 {
-	ra(stack_b);
+	t_combine	swapped;
+
+	swapped.stack_a = c->stack_b;
+	swapped.stack_b = c->stack_a;
+	swapped.bench = c->bench;
+	ra(&swapped);
+	c->bench->ra--;
+	c->bench->rb++;
 }
 
-void	rr(t_stack **stack_a, t_stack **stack_b)
+void	rr(t_combine *c)
 {
-	ra(stack_a);
-	ra(stack_b);
+	ra(c);
+	rb(c);
+	c->bench->ra--;
+	c->bench->rb--;
+	c->bench->rr++;
 }

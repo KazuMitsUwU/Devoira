@@ -10,9 +10,9 @@ void	adaptive_sort(t_stack **a, t_stack **b, t_bench *bench)
 	if (stack_size(a) <= 3)
 		sort_small(a, bench);
 	else if (disorder < 0.1f)
-		insertion_sort(, bench);
+		insertion_sort(a, b, bench);
 	else if (disorder < 0.5f)
 		chunk_sort(a, b, bench);
 	else
 		radix_sort(a, b, bench);
-}
+}   

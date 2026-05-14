@@ -3,44 +3,54 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+         #
+#    By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/20 16:39:53 by manoaran          #+#    #+#              #
-#    Updated: 2026/03/20 16:42:51 by manoaran         ###   ########.fr        #
+#    Updated: 2026/05/14 06:12:00 by sitrakaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= push_swap.a
-LIBFT_DIR   = libft
-LIBFT       = $(LIBFT_DIR)/libft.a
+NAME        = push_swap
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
-AR 			= ar rcs
-INCLUDES    = -I. -I$(LIBFT_DIR)
 
-SRC         = 
+INCLUDES    = -I.
+
+SRC         = main.c \
+              helpers.c \
+              ft_split.c \
+              bench.c \
+              parsing.c \
+              parsing_utils.c \
+              parsing_make_clean_list.c \
+              parsing_check_args.c \
+              stack_utils.c \
+              position_utils.c \
+              disorder_metric.c \
+              sa_sb_ss.c \
+              pa_pb.c \
+              ra_rb_rr.c \
+              rra_rrb_rrr.c \
+              simple_sort.c \
+              medium_sort.c \
+              complex_sort.c \
+              adaptive_sort.c
 
 OBJ         = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	cp $(LIBFT) $(NAME)
-	$(AR) $(NAME) $(OBJ)
-
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	$(MAKE) -C $(LIBFT_DIR) clean
 	rm -f $(OBJ)
 
 fclean: clean
-	$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all

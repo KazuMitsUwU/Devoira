@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   helpers_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/04 16:57:42 by manoaran          #+#    #+#             */
-/*   Updated: 2026/02/10 14:16:58 by manoaran         ###   ########.fr       */
+/*   Created: 2026/05/13 21:35:38 by manoaran          #+#    #+#             */
+/*   Updated: 2026/05/13 21:37:23 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-	=> counts the number of "words" separated by separator c using word_count;
-
-	=> allocating mem for the result with a place for each word, +1 for '\0';
-
-	=> filling the indexes (until len - 1) with pointers to each word, using
-		split_str to return strings in newly allocated memory for
-		each word;
-
-	=> straight up clean (free) everythnig if allocation fails;
-
-	=> terminates the array and returns it with each word separated without c;
-*/
-
-#include "libft.h"
+#include "push_swap.h"
 
 static size_t	word_count(char const *s, char c)
 {

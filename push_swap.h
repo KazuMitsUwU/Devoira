@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 16:43:33 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/14 04:12:32 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/15 07:28:24 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
+
+typedef struct s_chunk
+{
+	int	start;
+	int	end;
+}	t_chunk;
 
 typedef struct s_flags
 {
@@ -59,17 +64,21 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s);
 char	**ft_split(char const *s, char c);
 char	**make_clean_arg_list(int argc, char **argv);
-int		define_new_argc(char **clean_arg_list);
-void	error_exit(int error_type);
-int		my_atoi(const char *arg);
+void	free_clean_arg_list(char **list);
+int		is_valid_flag(char *flag);
+int		define_clean_argc(char **clean_arg_list);
+void	error_exit(char **list, int error_type);
+int		my_atoi(const char *arg, char **list);
 void	check_flags(int new_argc, char **argv, t_flags *flags);
 void	check_int_list(char **clean_arg_list, int start);
 void	parsing(int argc, char **argv, t_stack **stack_a, t_flags *flags);
 int		nb_of_layer(t_stack **stack);
 void	add_on_top(t_stack **stack, int value);
 void	add_at_bot(t_stack **stack, int value);
+void	free_stack(t_stack **stack);
 int		get_min_value(t_stack *stack_a);
 int		get_lowest_position(t_stack **stack_b);
 int		*make_temp_arr(t_stack **stack_a, int size);
@@ -78,9 +87,9 @@ void	define_positions(t_stack **stack_a, int *temp_arr, int size);
 int		ft_sqrt(int size);
 void	print_op(char *op);
 void	print_bench(t_bench *bench, int flag);
-void	sa(t_stack **stack_a, t_bench *bench);
-void	sb(t_stack **stack_b, t_bench *bench);
-void	ss(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+void	sa(t_stack **stack_a);
+void	sb(t_stack **stack_b);
+void	ss(t_stack **stack_a, t_stack **stack_b);
 void	pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	ra(t_stack **stack_a, t_bench *bench);

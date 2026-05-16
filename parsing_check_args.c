@@ -5,85 +5,109 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/14 00:00:00 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/14 06:14:35 by sitrakaa         ###   ########.fr       */
+/*   Created: 2026/05/14 06:43:58 by manoaran          #+#    #+#             */
+/*   Updated: 2026/05/15 07:30:22 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_flag(char *arg)
+static void	find_flag(char *arg, t_flags *flags, int *n_strat,
+						int *n_bench, char **list)
 {
-	return (ft_strcmp(arg, "--bench") == 0
-		|| ft_strcmp(arg, "-s") == 0
-		|| ft_strcmp(arg, "-m") == 0
-		|| ft_strcmp(arg, "-c") == 0
-		|| ft_strcmp(arg, "-a") == 0);
+	int	flag_num;
+
+	if (ft_strcmp(arg, "--bench") == 0)
+	{
+		(*n_bench)++;
+		if (*n_bench > 1)
+			error_exit(list, 0);
+		flags->bench = 1;
+	}
+	else
+	{
+		flag_num = is_valid_flag(arg);
+		if (flag_num == -1)
+			error_exit(list, 2);
+		(*n_strat)++;
+		if (*n_strat > 1)
+			error_exit(list, 1);
+		flags->strategy = flag_num;
+	}
 }
 
-void	check_flags(int new_argc, char **argv, t_flags *flags)
+void	check_flags(int clean_argc, char **list, t_flags *flags)
 {
 	int	i;
-	int	bench_count;
-	int	strategy_count;
+	int	n_strat;
+	int	n_bench;
 
 	flags->strategy = FLAG_ADAPTIVE;
 	flags->bench = 0;
 	flags->start = 0;
-	bench_count = 0;
-	strategy_count = 0;
+	n_strat = 0;
+	n_bench = 0;
 	i = 0;
-	while (i < new_argc && is_flag(argv[i]))
+	while (i < clean_argc)
 	{
-		if (ft_strcmp(argv[i], "--bench") == 0)
+		if (list[i][0] == '-' && list[i][1] == '-')
 		{
-			bench_count++;
-			if (bench_count > 1)
-				error_exit(0);
-			flags->bench = 1;
+			find_flag(list[i], flags, &n_strat, &n_bench, list);
+			flags->start++;
+			i++;
 		}
 		else
-		{
-			strategy_count++;
-			if (strategy_count > 1)
-				error_exit(1);
-			if (ft_strcmp(argv[i], "-s") == 0)
-				flags->strategy = FLAG_SIMPLE;
-			else if (ft_strcmp(argv[i], "-m") == 0)
-				flags->strategy = FLAG_MEDIUM;
-			else if (ft_strcmp(argv[i], "-c") == 0)
-				flags->strategy = FLAG_COMPLEX;
-			else if (ft_strcmp(argv[i], "-a") == 0)
-				flags->strategy = FLAG_ADAPTIVE;
-			else
-				error_exit(2);
-		}
-		i++;
-	}
-	flags->start = i;
-	while (i < new_argc)
-	{
-		if (is_flag(argv[i]))
-			error_exit(5);
-		i++;
+			return ;
 	}
 }
 
-static int	is_valid_int_str(char *arg)
+static int	duplicate_found(char **list, char *value, int cur, int start)
+{
+	int	i;
+
+	i = start;
+	while (i < cur)
+	{
+		if (my_atoi(list[i], list) == my_atoi(value, list))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static void	check_if_int(char *str, char **list)
 {
 	int	i;
 
 	i = 0;
-	if (arg[i] == '-' || arg[i] == '+')
-		i++;
-	if (!arg[i])
-		return (0);
-	while (arg[i])
+	if (str[0] == '-' || str[0] == '+')
 	{
-		if (arg[i] < '0' || arg[i] > '9')
-			return (0);
+		if (str[1] == '-')
+			error_exit(list, 5);
+		if (str[1] == '\0')
+			error_exit(list, 3);
 		i++;
 	}
-	return (1);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			error_exit(list, 3);
+		i++;
+	}
 }
 
+void	check_int_list(char **list, int start)
+{
+	int	i;
+
+	i = start;
+	if (!list[i])
+		return ;
+	while (list[i])
+	{
+		check_if_int(list[i], list);
+		if (duplicate_found(list, list[i], i, start))
+			error_exit(list, 4);
+		i++;
+	}
+}

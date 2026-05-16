@@ -12,49 +12,31 @@
 
 #include "push_swap.h"
 
-static void	swap_top(t_stack **stack)
+void	sa(t_stack **stack_a)
 {
 	int		temp;
 	t_stack	*top_layer;
 
-	if (!stack || !*stack || !(*stack)->next)
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
-	top_layer = *stack;
+	top_layer = *stack_a;
 	temp = top_layer->value;
 	top_layer->value = top_layer->next->value;
 	top_layer->next->value = temp;
-}
-
-void	sa(t_stack **stack_a, t_bench *bench)
-{
-	swap_top(stack_a);
-	if (bench)
-	{
-		bench->sa++;
-		bench->total++;
-	}
 	print_op("sa");
 }
 
-void	sb(t_stack **stack_b, t_bench *bench)
+void	sb(t_stack **stack_b)
 {
-	swap_top(stack_b);
-	if (bench)
-	{
-		bench->sb++;
-		bench->total++;
-	}
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
+		return ;
+	sa(stack_b);
 	print_op("sb");
 }
 
-void	ss(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
+void	ss(t_stack **stack_a, t_stack **stack_b)
 {
-	swap_top(stack_a);
-	swap_top(stack_b);
-	if (bench)
-	{
-		bench->ss++;
-		bench->total++;
-	}
+	sa(stack_a);
+	sa(stack_b);
 	print_op("ss");
 }

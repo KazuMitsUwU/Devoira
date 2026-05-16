@@ -6,13 +6,26 @@
 /*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 16:32:08 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/13 15:43:09 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/15 00:00:00 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	define_new_argc(char **clean_arg_list)
+int	is_valid_flag(char *flag)
+{
+	if (ft_strncmp(flag, "--simple", 8) == 0)
+		return (FLAG_SIMPLE);
+	if (ft_strncmp(flag, "--medium", 8) == 0)
+		return (FLAG_MEDIUM);
+	if (ft_strncmp(flag, "--complex", 9) == 0)
+		return (FLAG_COMPLEX);
+	if (ft_strncmp(flag, "--adaptive", 10) == 0)
+		return (FLAG_ADAPTIVE);
+	return (-1);
+}
+
+int	define_clean_argc(char **clean_arg_list)
 {
 	int	n;
 
@@ -22,25 +35,6 @@ int	define_new_argc(char **clean_arg_list)
 	while (clean_arg_list[n])
 		n++;
 	return (n);
-}
-
-void	error_exit(int error_type)
-{
-	if (error_type == 0)
-		write(2, "Error: more than 1 bench flag found\n", 36);
-	if (error_type == 1)
-		write(2, "Error: more than 1 strategy flag found\n", 39);
-	if (error_type == 2)
-		write(2, "Error: invalid flag\n", 20);
-	if (error_type == 3)
-		write(2, "Error: invalid integer found\n", 29);
-	if (error_type == 4)
-		write(2, "Error: integer duplicate found\n", 31);
-	if (error_type == 5)
-		write(2, "Error: misplaced flag\n", 22);
-	else
-		write(2, "Error\n", 6);
-	exit(1);
 }
 
 static void	sign_check(char c, int *sign, long *i)
@@ -53,7 +47,7 @@ static void	sign_check(char c, int *sign, long *i)
 	}
 }
 
-int	my_atoi(const char *arg)
+int	my_atoi(const char *arg, char **list)
 {
 	long	i;
 	int		sign;
@@ -66,12 +60,12 @@ int	my_atoi(const char *arg)
 	while (arg[i])
 	{
 		if (arg[i] < '0' || arg[i] > '9')
-			error_exit(3);
+			error_exit(list, 3);
 		result = (result * 10) + (arg[i] - '0');
+		if (result * sign < -2147483648 || result * sign > 2147483647)
+			error_exit(list, 3);
 		i++;
 	}
 	result *= sign;
-	if ((result < -2147483648) || (result > 2147483647))
-		error_exit(3);
 	return ((int)result);
 }

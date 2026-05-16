@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   str_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/14 11:51:42 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/15 18:03:32 by sitrakaa         ###   ########.fr       */
+/*   Created: 2026/04/05 14:22:11 by sitrakaa          #+#    #+#             */
+/*   Updated: 2026/05/14 21:42:50 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-void	parsing(int argc, char **argv, t_stack **stack_a, t_flags *flags)
+void	ft_putchar(char c, int fd, int *cnt)
 {
-	char	**list;
-	int		clean_argc;
-	int		i;
+	*cnt += write(fd, &c, 1);
+}
 
-	list = make_clean_arg_list(argc, argv);
-	clean_argc = define_clean_argc(list);
-	check_flags(clean_argc, list, flags);
-	i = flags->start;
-	check_int_list(list, i);
-	while (list[i])
+void	print_str(const char *s, int fd, int *cnt)
+{
+	int	i;
+
+	if (s == NULL)
 	{
-		add_at_bot(stack_a, my_atoi(list[i], list));
+		print_str(NULL_MESSAGE, fd, cnt);
+		return ;
+	}
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar(s[i], fd, cnt);
 		i++;
 	}
-	free_clean_arg_list(list);
 }

@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/14 11:51:42 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/15 18:03:32 by sitrakaa         ###   ########.fr       */
+/*   Created: 2026/04/05 14:21:46 by sitrakaa          #+#    #+#             */
+/*   Updated: 2026/04/10 15:33:37 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-void	parsing(int argc, char **argv, t_stack **stack_a, t_flags *flags)
+void	ft_putnbr(int number, int fd, int *counter)
 {
-	char	**list;
-	int		clean_argc;
-	int		i;
-
-	list = make_clean_arg_list(argc, argv);
-	clean_argc = define_clean_argc(list);
-	check_flags(clean_argc, list, flags);
-	i = flags->start;
-	check_int_list(list, i);
-	while (list[i])
+	if (number == INT_MIN)
 	{
-		add_at_bot(stack_a, my_atoi(list[i], list));
-		i++;
+		print_str("-2147483648", fd, counter);
+		return ;
 	}
-	free_clean_arg_list(list);
+	if (number < 0)
+	{
+		ft_putchar('-', fd, counter);
+		number = -number;
+	}
+	if (number >= 10)
+		ft_putnbr(number / 10, fd, counter);
+	ft_putchar((number % 10) + '0', fd, counter);
 }

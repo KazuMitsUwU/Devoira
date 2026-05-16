@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   stack_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/14 11:51:42 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/15 18:03:32 by sitrakaa         ###   ########.fr       */
+/*   Created: 2026/04/07 16:13:46 by manoaran          #+#    #+#             */
+/*   Updated: 2026/05/15 07:11:11 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	parsing(int argc, char **argv, t_stack **stack_a, t_flags *flags)
+void	free_stack(t_stack **stack)
 {
-	char	**list;
-	int		clean_argc;
-	int		i;
+	t_stack	*current;
+	t_stack	*next;
 
-	list = make_clean_arg_list(argc, argv);
-	clean_argc = define_clean_argc(list);
-	check_flags(clean_argc, list, flags);
-	i = flags->start;
-	check_int_list(list, i);
-	while (list[i])
+	if (!stack || !*stack)
+		return ;
+	current = *stack;
+	while (current)
 	{
-		add_at_bot(stack_a, my_atoi(list[i], list));
-		i++;
+		next = current->next;
+		free(current);
+		current = next;
 	}
-	free_clean_arg_list(list);
+	*stack = NULL;
 }

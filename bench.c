@@ -3,37 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   bench.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 07:09:39 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/14 00:00:00 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/15 07:35:58 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-#include <stdio.h>
+#include "ft_printf/ft_printf.h"
 
 void	print_op(char *op)
 {
-	write(1, op, ft_strlen(op));
-	write(1, "\n", 1);
+	ft_printf("%s\n", op);
 }
 
 void	print_bench(t_bench *bench, int flag)
 {
-	dprintf(2, "[bench] disorder:    %.2f%%\n", bench->disorder * 100.0f);
+	ft_printf_fd(2, "[bench] disorder:    %.2f%%\n", bench->disorder * 100.0f);
 	if (flag == FLAG_ADAPTIVE)
-		dprintf(2, "[bench] strategy:    Adaptive\n");
+		ft_printf_fd(2, "[bench] strategy:    Adaptive / O(n√n)\n");
 	else if (flag == FLAG_SIMPLE)
-		dprintf(2, "[bench] strategy:    Simple (insertion)\n");
+		ft_printf_fd(2, "[bench] strategy:    Simple (insertion)\n");
 	else if (flag == FLAG_MEDIUM)
-		dprintf(2, "[bench] strategy:    Chunk\n");
+		ft_printf_fd(2, "[bench] strategy:    Chunk\n");
 	else if (flag == FLAG_COMPLEX)
-		dprintf(2, "[bench] strategy:    Radix\n");
-	dprintf(2, "[bench] total_ops:   %d\n", bench->total);
-	dprintf(2, "[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
+		ft_printf_fd(2, "[bench] strategy:    Radix\n");
+	ft_printf_fd(2, "[bench] total_ops:   %d\n", bench->total);
+	ft_printf_fd(2, "[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
 		bench->sa, bench->sb, bench->ss, bench->pa, bench->pb);
-	dprintf(2, "[bench] ra: %d  rb: %d  rr: %d  rra: %d  rrb: %d  rrr: %d\n",
-		bench->ra, bench->rb, bench->rr, bench->rra, bench->rrb, bench->rrr);
+	ft_printf_fd(2, "[bench] ra: %d  rb: %d  rr: %d\n",
+		bench->ra, bench->rb, bench->rr);
+	ft_printf_fd(2, "[bench] rr: %d  rra: %d  rrb: %d  rrr: %d\n",
+		bench->rra, bench->rrb, bench->rrr);
 }

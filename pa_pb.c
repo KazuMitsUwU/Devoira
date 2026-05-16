@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_pb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:12:36 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/14 00:00:00 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/15 06:36:36 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	if (!stack_b || !*stack_b)
 		return ;
 	top_b = *stack_b;
-	add_on_top(stack_a, top_b->value);
 	if (top_b->next)
 	{
 		top_b->next->prev = NULL;
@@ -27,7 +26,11 @@ void	pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	}
 	else
 		*stack_b = NULL;
-	free(top_b);
+	top_b->next = *stack_a;
+	top_b->prev = NULL;
+	if (*stack_a)
+		(*stack_a)->prev = top_b;
+	*stack_a = top_b;
 	if (bench)
 	{
 		bench->pa++;
@@ -43,7 +46,6 @@ void	pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	if (!stack_a || !*stack_a)
 		return ;
 	top_a = *stack_a;
-	add_on_top(stack_b, top_a->value);
 	if (top_a->next)
 	{
 		top_a->next->prev = NULL;
@@ -51,7 +53,11 @@ void	pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	}
 	else
 		*stack_a = NULL;
-	free(top_a);
+	top_a->next = *stack_b;
+	top_a->prev = NULL;
+	if (*stack_b)
+		(*stack_b)->prev = top_a;
+	*stack_b = top_a;
 	if (bench)
 	{
 		bench->pb++;

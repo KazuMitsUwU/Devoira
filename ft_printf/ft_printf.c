@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 12:52:35 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/14 21:14:49 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/17 16:12:06 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,40 @@ void	print_arg(char c, va_list *arg, int fd, int *counter)
 		ft_putchar(c, fd, counter);
 }
 
-static int	ft_printf_core(int fd, const char *str, va_list *arg)
+static void	handle_format(const char *str, int *index, va_list *arg,
+				int fd, int *counter)
+{
+	int	precision;
+
+	(*index)++;
+	if (str[*index] == '.' || (str[*index] >= '0' && str[*index] <= '9'))
+	{
+		precision = 6;
+		if (str[*index] == '.')
+			(*index)++;
+		if (str[*index] >= '0' && str[*index] <= '9')
+		{
+			precision = 0;
+			while (str[*index] >= '0' && str[*index] <= '9')
+				precision = precision * 10 + (str[(*index)++] - '0');
+		}
+		if (str[*index] == 'f')
+			print_float(va_arg(*arg, double), precision, fd, counter);
+		(*index)++;
+	}
+	else if (str[*index] == 'f')
+	{
+		print_float(va_arg(*arg, double), 6, fd, counter);
+		(*index)++;
+	}
+	else
+	{
+		print_arg(str[*index], arg, fd, counter);
+		(*index)++;
+	}
+}
+
+int	ft_printf_core(int fd, const char *str, va_list *arg)
 {
 	int		index;
 	int		counter;
@@ -44,11 +77,7 @@ static int	ft_printf_core(int fd, const char *str, va_list *arg)
 	while (str[index])
 	{
 		if (str[index] == '%')
-		{
-			index++;
-			print_arg(str[index], arg, fd, &counter);
-			index++;
-		}
+			handle_format(str, &index, arg, fd, &counter);
 		else
 			ft_putchar(str[index++], fd, &counter);
 	}
@@ -62,17 +91,6 @@ int	ft_printf(const char *str, ...)
 
 	va_start(arg, str);
 	ret = ft_printf_core(1, str, &arg);
-	va_end(arg);
-	return (ret);
-}
-
-int	ft_printf_fd(int fd, const char *str, ...)
-{
-	va_list	arg;
-	int		ret;
-
-	va_start(arg, str);
-	ret = ft_printf_core(fd, str, &arg);
 	va_end(arg);
 	return (ret);
 }

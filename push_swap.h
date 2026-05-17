@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 16:43:33 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/15 07:28:24 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/17 17:28:02 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**make_clean_arg_list(int argc, char **argv);
 void	free_clean_arg_list(char **list);
 int		is_valid_flag(char *flag);
 int		define_clean_argc(char **clean_arg_list);
-void	error_exit(char **list, int error_type);
+void	error_exit(char **list, char *msg);
 int		my_atoi(const char *arg, char **list);
 void	check_flags(int new_argc, char **argv, t_flags *flags);
 void	check_int_list(char **clean_arg_list, int start);
@@ -87,9 +87,9 @@ void	define_positions(t_stack **stack_a, int *temp_arr, int size);
 int		ft_sqrt(int size);
 void	print_op(char *op);
 void	print_bench(t_bench *bench, int flag);
-void	sa(t_stack **stack_a);
-void	sb(t_stack **stack_b);
-void	ss(t_stack **stack_a, t_stack **stack_b);
+void	sa(t_stack **stack_a, t_bench *bench);
+void	sb(t_stack **stack_b, t_bench *bench);
+void	ss(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	ra(t_stack **stack_a, t_bench *bench);
@@ -101,6 +101,11 @@ void	rrr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 float	disorder_metric(t_stack **stack_a);
 void	sort_small(t_stack **a, t_bench *bench);
 void	insertion_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+void	process_chunk(t_stack **stack_a, t_stack **stack_b,
+			t_chunk chunk, t_bench *bench);
+void	chunk_push(t_stack **stack_a, t_stack **stack_b,
+			int size, t_bench *bench);
+void	push_back_to_a(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	adaptive_sort(t_stack **a, t_stack **b, t_bench *bench);

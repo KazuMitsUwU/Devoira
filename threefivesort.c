@@ -1,21 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup.c                                          :+:      :+:    :+:   */
+/*   threefivesort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/15 00:00:00 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/17 15:21:27 by sitrakaa         ###   ########.fr       */
+/*   Created: 2026/05/17 17:41:10 by sitrakaa          #+#    #+#             */
+/*   Updated: 2026/05/17 17:41:10 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	error_exit(char **list, char *msg)
-{
-	if (list)
-		free_clean_arg_list(list);
-	write(2, msg, ft_strlen(msg));
-	exit(1);
-}

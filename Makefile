@@ -6,7 +6,7 @@
 #    By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/20 16:39:53 by manoaran          #+#    #+#              #
-#    Updated: 2026/05/15 07:12:18 by sitrakaa         ###   ########.fr        #
+#    Updated: 2026/05/17 17:28:18 by sitrakaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ SRC 		=	main.c \
 				rra_rrb_rrr.c \
 				simple_sort.c \
 				medium_sort.c \
+				chunk_sort.c \
+				chunk_process.c \
 				complex_sort.c \
 				adaptive_sort.c\
 				str_utils.c\

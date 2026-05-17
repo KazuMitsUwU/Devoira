@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup.c                                          :+:      :+:    :+:   */
+/*   ft_frprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/15 00:00:00 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/17 15:21:27 by sitrakaa         ###   ########.fr       */
+/*   Created: 2026/05/17 16:07:15 by sitrakaa          #+#    #+#             */
+/*   Updated: 2026/05/17 16:08:32 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-void	error_exit(char **list, char *msg)
+int	ft_printf_fd(int fd, const char *str, ...)
 {
-	if (list)
-		free_clean_arg_list(list);
-	write(2, msg, ft_strlen(msg));
-	exit(1);
+	va_list	arg;
+	int		ret;
+
+	va_start(arg, str);
+	ret = ft_printf_core(fd, str, &arg);
+	va_end(arg);
+	return (ret);
 }

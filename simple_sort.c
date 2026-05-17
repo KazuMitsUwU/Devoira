@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 15:17:38 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/14 00:00:00 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/17 16:59:32 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	insertion_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	{
 		min_value = get_min_value(*stack_a);
 		rotations = nb_ra(*stack_a, min_value);
-		while (rotations > 0)
-		{
-			ra(stack_a, bench);
-			rotations--;
-		}
+		if (rotations == 1)
+			sa(stack_a, bench);
+		else
+			while (rotations-- > 0)
+				ra(stack_a, bench);
 		pb(stack_a, stack_b, bench);
 	}
 	while (*stack_b)

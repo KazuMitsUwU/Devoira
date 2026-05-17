@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 16:32:08 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/15 00:00:00 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/17 15:24:15 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int	my_atoi(const char *arg, char **list)
 	while (arg[i])
 	{
 		if (arg[i] < '0' || arg[i] > '9')
-			error_exit(list, 3);
+			error_exit(list, "Error: invalid integer found\n");
 		result = (result * 10) + (arg[i] - '0');
 		if (result * sign < -2147483648 || result * sign > 2147483647)
-			error_exit(list, 3);
+			error_exit(list, "Error: invalid integer found\n");
 		i++;
 	}
 	result *= sign;

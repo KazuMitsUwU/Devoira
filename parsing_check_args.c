@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 06:43:58 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/15 07:30:22 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/17 15:21:09 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ static void	find_flag(char *arg, t_flags *flags, int *n_strat,
 	{
 		(*n_bench)++;
 		if (*n_bench > 1)
-			error_exit(list, 0);
+			error_exit(list, "Error: more than 1 bench flag found\n");
 		flags->bench = 1;
 	}
 	else
 	{
 		flag_num = is_valid_flag(arg);
 		if (flag_num == -1)
-			error_exit(list, 2);
+			error_exit(list, "Error: invalid flag\n");
 		(*n_strat)++;
 		if (*n_strat > 1)
-			error_exit(list, 1);
+			error_exit(list, "Error: more than 1 strategy flag found\n");
 		flags->strategy = flag_num;
 	}
 }
@@ -83,15 +83,15 @@ static void	check_if_int(char *str, char **list)
 	if (str[0] == '-' || str[0] == '+')
 	{
 		if (str[1] == '-')
-			error_exit(list, 5);
+			error_exit(list, "Error: misplaced flag\n");
 		if (str[1] == '\0')
-			error_exit(list, 3);
+			error_exit(list, "Error: invalid integer found\n");
 		i++;
 	}
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
-			error_exit(list, 3);
+			error_exit(list, "Error: invalid integer found\n");
 		i++;
 	}
 }
@@ -107,7 +107,7 @@ void	check_int_list(char **list, int start)
 	{
 		check_if_int(list[i], list);
 		if (duplicate_found(list, list[i], i, start))
-			error_exit(list, 4);
+			error_exit(list, "Error: integer duplicate found\n");
 		i++;
 	}
 }

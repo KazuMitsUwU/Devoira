@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 14:52:47 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/15 06:38:59 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/18 16:52:00 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	main(int argc, char **argv)
 	parsing(argc, argv, &stack_a, &flags);
 	if (!stack_a)
 		return (0);
+	check_if_sorted(&stack_a);
 	run_strategy(&stack_a, &stack_b, &flags, &bench);
 	if (flags.bench)
 		print_bench(&bench, flags.strategy);

@@ -6,53 +6,28 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 06:43:58 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/17 15:21:09 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:02:53 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	find_flag(char *arg, t_flags *flags, int *n_strat,
-						int *n_bench, char **list)
-{
-	int	flag_num;
-
-	if (ft_strcmp(arg, "--bench") == 0)
-	{
-		(*n_bench)++;
-		if (*n_bench > 1)
-			error_exit(list, "Error: more than 1 bench flag found\n");
-		flags->bench = 1;
-	}
-	else
-	{
-		flag_num = is_valid_flag(arg);
-		if (flag_num == -1)
-			error_exit(list, "Error: invalid flag\n");
-		(*n_strat)++;
-		if (*n_strat > 1)
-			error_exit(list, "Error: more than 1 strategy flag found\n");
-		flags->strategy = flag_num;
-	}
-}
-
 void	check_flags(int clean_argc, char **list, t_flags *flags)
 {
 	int	i;
-	int	n_strat;
-	int	n_bench;
+	int	counts[2];
 
 	flags->strategy = FLAG_ADAPTIVE;
 	flags->bench = 0;
 	flags->start = 0;
-	n_strat = 0;
-	n_bench = 0;
+	counts[0] = 0;
+	counts[1] = 0;
 	i = 0;
 	while (i < clean_argc)
 	{
 		if (list[i][0] == '-' && list[i][1] == '-')
 		{
-			find_flag(list[i], flags, &n_strat, &n_bench, list);
+			find_flag(list[i], flags, counts, list);
 			flags->start++;
 			i++;
 		}

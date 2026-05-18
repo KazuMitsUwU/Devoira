@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 07:09:39 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/17 15:55:09 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/18 23:49:21 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	print_bench(t_bench *bench, int flag)
 	else if (flag == FLAG_SIMPLE)
 		ft_printf_fd(2, "[bench] strategy:    Simple (insertion)\n");
 	else if (flag == FLAG_MEDIUM)
-		ft_printf_fd(2, "[bench] strategy:    Chunk\n");
+		ft_printf_fd(2, "[bench] strategy:    Medium (Chunk based)\n");
 	else if (flag == FLAG_COMPLEX)
-		ft_printf_fd(2, "[bench] strategy:    Radix\n");
+		ft_printf_fd(2, "[bench] strategy:    Complex (Radix sort)\n");
 	ft_printf_fd(2, "[bench] total_ops:   %d\n", bench->total);
 	ft_printf_fd(2, "[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
 		bench->sa, bench->sb, bench->ss, bench->pa, bench->pb);

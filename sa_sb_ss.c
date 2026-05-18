@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sa_sb_ss.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 15:17:59 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/17 17:17:59 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/18 17:35:34 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,3 @@ void	ss(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	}
 	print_op("ss");
 }
-

@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 16:43:33 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/17 17:28:02 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/18 22:59:10 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 char	**ft_split(char const *s, char c);
+void	split_and_fill(char **list, int *clean_i, char *string);
 char	**make_clean_arg_list(int argc, char **argv);
 void	free_clean_arg_list(char **list);
 int		is_valid_flag(char *flag);
@@ -75,7 +76,9 @@ int		my_atoi(const char *arg, char **list);
 void	check_flags(int new_argc, char **argv, t_flags *flags);
 void	check_int_list(char **clean_arg_list, int start);
 void	parsing(int argc, char **argv, t_stack **stack_a, t_flags *flags);
+void	check_if_sorted(t_stack **stack_a);
 int		nb_of_layer(t_stack **stack);
+void	find_flag(char *arg, t_flags *flags, int *counts, char **list);
 void	add_on_top(t_stack **stack, int value);
 void	add_at_bot(t_stack **stack, int value);
 void	free_stack(t_stack **stack);
@@ -109,5 +112,9 @@ void	push_back_to_a(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	adaptive_sort(t_stack **a, t_stack **b, t_bench *bench);
+void	three_five_sort(t_stack **a, t_stack **b, t_bench *bench);
+int		stack_size(t_stack *stack);
+int		find_min(t_stack **a);
+void	push_two_min(t_stack **a, t_stack **b, t_bench *bench);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 10:59:28 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/17 15:27:53 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/18 18:56:25 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,39 +59,11 @@ void	free_clean_arg_list(char **list)
 	free(list);
 }
 
-static void	split_and_fill(char **list, int *clean_i, char *string)
+void	make_clean_loop(int argc, char **argv, char ***list)
 {
-	char	**split;
-	int		i;
+	int	i;
+	int	clean_i;
 
-	split = ft_split(string, ' ');
-	if (!split || !split[0])
-	{
-		if (split)
-			free(split);
-		return ;
-	}
-	i = 0;
-	while (split[i])
-	{
-		list[*clean_i] = split[i];
-		(*clean_i)++;
-		i++;
-	}
-	free(split);
-}
-
-char	**make_clean_arg_list(int argc, char **argv)
-{
-	char	**list;
-	int		clean_i;
-	int		i;
-
-	if (argc < 2)
-		exit(0);
-	list = malloc(sizeof(char *) * (safe_space(argc, argv) + 1));
-	if (!list)
-		error_exit(NULL, "Error: malloc failed\n");
 	clean_i = 0;
 	i = 1;
 	while (i < argc)
@@ -102,12 +74,24 @@ char	**make_clean_arg_list(int argc, char **argv)
 			continue ;
 		}
 		if (ft_strchr(argv[i], ' '))
-			split_and_fill(list, &clean_i, argv[i]);
+			split_and_fill(*list, &clean_i, argv[i]);
 		else
-			list[clean_i++] = ft_strdup(argv[i]);
+			(*list)[clean_i++] = ft_strdup(argv[i]);
 		i++;
 	}
-	list[clean_i] = NULL;
+	(*list)[clean_i] = NULL;
+}
+
+char	**make_clean_arg_list(int argc, char **argv)
+{
+	char	**list;
+
+	if (argc < 2)
+		exit(0);
+	list = malloc(sizeof(char *) * (safe_space(argc, argv) + 1));
+	if (!list)
+		error_exit(NULL, "Error: malloc failed\n");
+	make_clean_loop(argc, argv, &list);
 	if (!list[0])
 	{
 		free(list);

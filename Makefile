@@ -6,7 +6,7 @@
 #    By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/20 16:39:53 by manoaran          #+#    #+#              #
-#    Updated: 2026/05/17 17:28:18 by sitrakaa         ###   ########.fr        #
+#    Updated: 2026/05/18 22:59:46 by sitrakaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,11 @@ SRC 		=	main.c \
 				adaptive_sort.c\
 				str_utils.c\
 				cleanup.c\
-				stack_free.c
+				stack_free.c\
+				first_check.c\
+				find_flag.c\
+				three_five_sort.c \
+				five_utils.c
 
 OBJ         =   $(SRC:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 16:32:08 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/17 15:24:15 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/18 17:36:56 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,26 @@ int	my_atoi(const char *arg, char **list)
 	}
 	result *= sign;
 	return ((int)result);
+}
+
+void	split_and_fill(char **list, int *clean_i, char *string)
+{
+	char	**split;
+	int		i;
+
+	split = ft_split(string, ' ');
+	if (!split || !split[0])
+	{
+		if (split)
+			free(split);
+		return ;
+	}
+	i = 0;
+	while (split[i])
+	{
+		list[*clean_i] = split[i];
+		(*clean_i)++;
+		i++;
+	}
+	free(split);
 }

@@ -6,7 +6,7 @@
 /*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 15:17:59 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/18 17:35:34 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/19 10:48:35 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ void	sa(t_stack **stack_a, t_bench *bench)
 
 void	sb(t_stack **stack_b, t_bench *bench)
 {
+	int		temp;
+	t_stack	*top_layer;
+
 	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
-	sa(stack_b, bench);
+	top_layer = *stack_b;
+	temp = top_layer->value;
+	top_layer->value = top_layer->next->value;
+	top_layer->next->value = temp;
 	if (bench)
 	{
 		bench->sb++;

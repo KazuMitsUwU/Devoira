@@ -6,7 +6,7 @@
 /*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 16:32:08 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/18 17:36:56 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/20 13:56:55 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	is_valid_flag(char *flag)
 {
-	if (ft_strncmp(flag, "--simple", 8) == 0)
+	if (ft_strcmp(flag, "--simple") == 0)
 		return (FLAG_SIMPLE);
-	if (ft_strncmp(flag, "--medium", 8) == 0)
+	if (ft_strcmp(flag, "--medium") == 0)
 		return (FLAG_MEDIUM);
-	if (ft_strncmp(flag, "--complex", 9) == 0)
+	if (ft_strcmp(flag, "--complex") == 0)
 		return (FLAG_COMPLEX);
-	if (ft_strncmp(flag, "--adaptive", 10) == 0)
+	if (ft_strcmp(flag, "--adaptive") == 0)
 		return (FLAG_ADAPTIVE);
 	return (-1);
 }

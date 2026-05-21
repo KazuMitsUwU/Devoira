@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by [sitrakaa],[manoaran].*
+*This project has been created as part of the 42 curriculum by sitrakaa, manoaran.*
 
 ---
 
@@ -152,6 +152,33 @@ make re       # full rebuild
 - **Algorithm selection logic** (`adaptive_sort.c`): AI was consulted to reason about which disorder threshold values make sense as cutoffs between strategies, and to validate the O(n√n) claim for chunk sort.
 - **Chunk size formula**: The `√n / 2` chunk count formula was explored with AI assistance to balance the number of chunks against rotation cost per chunk.
 - **Debugging**: AI helped trace edge cases in `rra`/`rrb` (reverse rotate) and the `push_back_to_a` logic in chunk sort where elements were not being returned in the correct order.
-- **README writing**: This README was drafted with AI assistance based on the full project source code.
+- **wording**: AI was used to assist wording and README format.
 
 AI was not used to write the core sorting logic wholesale — implementation was done by the authors, with AI serving as a sounding board and debugging tool.
+
+## Contribution
+
+Strictly moving as a pair, this project was done with meaningful collaboration throughout every major step, until the project's full completion. We sometimes divided the tasks between each other, or worked on the same tricky task. 
+As for the task managment, it was mainly organized as follows : 
+
+-push_swap files (main.c, header file) 				-> sitrakaa & manoaran
+
+-Makefile 							   				-> sitrakaa
+
+-parsing (parsing_*.c files)		   				-> maonoaran
+
+-stack core (stack_utils, stack_free, five_utils) 	-> sitrakaa & manoaran
+
+-Operations (sa, ..., rrr)							-> sitrakaa & manoaran
+
+-sorting_algorithms (simple/medium/..._sort*.c)		-> sitrakaa & manoaran
+
+-Utilities (positions_utils, helpers, ...)			-> sitrakaa & manoaran
+
+-ft_printf (customized)								-> sitrakaa
+
+
+Every big category where we divided tasks has some files we built individually and some others that we made together.
+
+
+---		Thank you for reading and feel free to test our push_swap project 		---

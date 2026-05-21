@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 14:21:35 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/17 15:50:11 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:50:17 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ double	get_multiplier(int precision);
 void	print_float_parts(t_float *f, int fd, int *cnt);
 void	print_float(double n, int precision, int fd, int *cnt);
 void	print_arg(char c, va_list *arg, int fd, int *counter);
-
+void	handle_format(const char *str, int *index, va_list *arg, int *out);
 int		ft_printf_core(int fd, const char *str, va_list *arg);
 int		ft_printf(const char *str, ...);
 int		ft_printf_fd(int fd, const char *str, ...);

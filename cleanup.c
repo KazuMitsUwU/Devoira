@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 00:00:00 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/17 15:21:27 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/21 04:46:00 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,21 @@ void	error_exit(char **list, char *msg)
 		free_clean_arg_list(list);
 	write(2, msg, ft_strlen(msg));
 	exit(1);
+}
+
+void	free_stack(t_stack **stack)
+{
+	t_stack	*current;
+	t_stack	*next;
+
+	if (!stack || !*stack)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	*stack = NULL;
 }

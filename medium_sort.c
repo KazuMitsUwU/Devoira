@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 15:19:26 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/17 17:04:20 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/21 00:34:35 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

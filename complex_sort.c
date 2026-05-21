@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
+/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 15:18:51 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/18 16:54:07 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/19 08:33:52 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

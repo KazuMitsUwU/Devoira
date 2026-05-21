@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:57:09 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/18 19:00:48 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:10:02 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	handle_bench_flag(t_flags *flags, int *counts, char **list)
 {
 	counts[1]++;
 	if (counts[1] > 1)
-		error_exit(list, "Error: more than 1 bench flag found\n");
+		error_exit(list, "Error\nMore than 1 bench flag found\n");
 	flags->bench = 1;
 }
 
@@ -27,10 +27,10 @@ static void	handle_strat_flag(char *arg, t_flags *flags, int *counts,
 
 	flag_num = is_valid_flag(arg);
 	if (flag_num == -1)
-		error_exit(list, "Error: invalid flag\n");
+		error_exit(list, "Error\nInvalid flag\n");
 	counts[0]++;
 	if (counts[0] > 1)
-		error_exit(list, "Error: more than 1 strategy flag found\n");
+		error_exit(list, "Error\nMore than 1 strategy flag found\n");
 	flags->strategy = flag_num;
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   positions_utils.c                                  :+:      :+:    :+:   */
+/*   position_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manoaran <manoaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 09:41:43 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/04/30 09:45:50 by manoaran         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:21:54 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ void	define_positions(t_stack **stack_a, int *temp_arr, int size)
 		layer = *stack_a;
 		while (layer)
 		{
-			if (temp_arr[arr_i] == layer->value && !layer->status)
+			if (temp_arr[arr_i] == layer->value)
 			{
 				layer->position = arr_i;
-				layer->status = 1;
 				break ;
 			}
 			else
@@ -79,10 +78,21 @@ void	define_positions(t_stack **stack_a, int *temp_arr, int size)
 
 int	ft_sqrt(int size)
 {
-	int	i;
+	int	low;
+	int	high;
+	int	mid;
 
-	i = 1;
-	while (i * i < size)
-		i++;
-	return (i);
+	low = 1;
+	high = size;
+	while (low <= high)
+	{
+		mid = (low + high) / 2;
+		if (mid * mid == size)
+			return (mid);
+		else if (mid * mid < size)
+			low = mid + 1;
+		else
+			high = mid - 1;
+	}
+	return (high);
 }

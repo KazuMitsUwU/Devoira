@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ra_rb_rr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 16:13:25 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/14 16:01:14 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/20 13:48:58 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

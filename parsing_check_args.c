@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check_args.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 06:43:58 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/18 19:02:53 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:12:51 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ static void	check_if_int(char *str, char **list)
 	if (str[0] == '-' || str[0] == '+')
 	{
 		if (str[1] == '-')
-			error_exit(list, "Error: misplaced flag\n");
+			error_exit(list, "Error\nMisplaced flag\n");
 		if (str[1] == '\0')
-			error_exit(list, "Error: invalid integer found\n");
+			error_exit(list, "Error\nInvalid integer found\n");
 		i++;
 	}
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
-			error_exit(list, "Error: invalid integer found\n");
+			error_exit(list, "Error\nInvalid integer found\n");
 		i++;
 	}
 }
@@ -82,7 +82,7 @@ void	check_int_list(char **list, int start)
 	{
 		check_if_int(list[i], list);
 		if (duplicate_found(list, list[i], i, start))
-			error_exit(list, "Error: integer duplicate found\n");
+			error_exit(list, "Error\nDuplicate found\n");
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 16:43:33 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/18 22:59:10 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/21 04:25:47 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_stack
 {
 	int				value;
 	int				position;
-	int				status;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }					t_stack;
@@ -83,7 +82,7 @@ void	add_on_top(t_stack **stack, int value);
 void	add_at_bot(t_stack **stack, int value);
 void	free_stack(t_stack **stack);
 int		get_min_value(t_stack *stack_a);
-int		get_lowest_position(t_stack **stack_b);
+int		get_max(t_stack **stack_b);
 int		*make_temp_arr(t_stack **stack_a, int size);
 void	sort_arr(int *temp_arr, int size);
 void	define_positions(t_stack **stack_a, int *temp_arr, int size);
@@ -102,7 +101,6 @@ void	rra(t_stack **stack_a, t_bench *bench);
 void	rrb(t_stack **stack_b, t_bench *bench);
 void	rrr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 float	disorder_metric(t_stack **stack_a);
-void	sort_small(t_stack **a, t_bench *bench);
 void	insertion_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	process_chunk(t_stack **stack_a, t_stack **stack_b,
 			t_chunk chunk, t_bench *bench);
@@ -112,9 +110,8 @@ void	push_back_to_a(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	adaptive_sort(t_stack **a, t_stack **b, t_bench *bench);
-void	three_five_sort(t_stack **a, t_stack **b, t_bench *bench);
 int		stack_size(t_stack *stack);
-int		find_min(t_stack **a);
-void	push_two_min(t_stack **a, t_stack **b, t_bench *bench);
+void	three_sort(t_stack **a, t_stack **b, t_bench *bench);
+void	sort_five(t_stack **a, t_stack **b, t_bench *bench);
 
 #endif

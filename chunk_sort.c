@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 00:00:00 by sitrakaa          #+#    #+#             */
-/*   Updated: 2026/05/17 18:00:42 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/21 04:10:11 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,28 @@
 void	push_back_to_a(t_stack **stack_a, t_stack **stack_b,
 						t_bench *bench)
 {
-	int	min;
+	int		max;
+	int		max_depth;
+	int		size;
+	t_stack	*current;
 
 	while (*stack_b)
 	{
-		min = get_lowest_position(stack_b);
-		if ((*stack_b)->next && (*stack_b)->next->position == min)
-			sb(stack_b, bench);
-		else
-			while ((*stack_b)->position != min)
+		max = get_max(stack_b);
+		size = nb_of_layer(stack_b);
+		max_depth = 0;
+		current = *stack_b;
+		while (current->position != max)
+		{
+			current = current->next;
+			max_depth++;
+		}
+		if (max_depth < size / 2)
+			while ((*stack_b)->position != max)
 				rb(stack_b, bench);
+		else
+			while ((*stack_b)->position != max)
+				rrb(stack_b, bench);
 		pa(stack_a, stack_b, bench);
 	}
 }
@@ -32,26 +44,24 @@ void	push_back_to_a(t_stack **stack_a, t_stack **stack_b,
 void	chunk_push(t_stack **stack_a, t_stack **stack_b,
 					int size, t_bench *bench)
 {
-	int		chunk;
-	int		nb_chunks;
-	int		chunk_size;
-	t_chunk	c;
+	int		block_size;
+	int		block_num;
+	int		i;
+	int		size_a;
 
-	if (!stack_a || !*stack_a)
-		return ;
-	nb_chunks = ft_sqrt(size) / 2;
-	if (nb_chunks < 1)
-		nb_chunks = 1;
-	chunk_size = size / nb_chunks;
-	chunk = 1;
-	while (chunk <= nb_chunks)
+	block_size = ft_sqrt(size);
+	block_num = block_size;
+	while (*stack_a)
 	{
-		c.start = (chunk - 1) * chunk_size;
-		if (chunk == nb_chunks)
-			c.end = size;
-		else
-			c.end = chunk * chunk_size;
-		process_chunk(stack_a, stack_b, c, bench);
-		chunk++;
+		i = 0;
+		size_a = nb_of_layer(stack_a);
+		while (i++ < size_a)
+		{
+			if ((*stack_a)->position < block_num)
+				pb(stack_a, stack_b, bench);
+			else
+				ra(stack_a, bench);
+		}
+		block_num += block_size;
 	}
 }

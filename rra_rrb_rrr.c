@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 16:14:53 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/14 16:00:37 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/21 04:11:01 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ void	rra(t_stack **stack_a, t_bench *bench)
 {
 	t_stack	*bot_layer;
 	t_stack	*old_bot;
+	int		pos;
 
 	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
 	bot_layer = *stack_a;
 	while (bot_layer->next)
 		bot_layer = bot_layer->next;
+	pos = bot_layer->position;
 	add_on_top(stack_a, bot_layer->value);
+	(*stack_a)->position = pos;
 	old_bot = bot_layer;
 	bot_layer->prev->next = NULL;
 	free(old_bot);
@@ -38,13 +41,16 @@ void	rrb(t_stack **stack_b, t_bench *bench)
 {
 	t_stack	*bot_layer;
 	t_stack	*old_bot;
+	int		pos;
 
 	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
 	bot_layer = *stack_b;
 	while (bot_layer->next)
 		bot_layer = bot_layer->next;
+	pos = bot_layer->position;
 	add_on_top(stack_b, bot_layer->value);
+	(*stack_b)->position = pos;
 	old_bot = bot_layer;
 	bot_layer->prev->next = NULL;
 	free(old_bot);

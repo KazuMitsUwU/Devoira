@@ -6,7 +6,7 @@
 /*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 16:13:46 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/15 07:11:09 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/21 04:47:18 by sitrakaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	add_on_top(t_stack **stack, int value)
 		return ;
 	new_top->value = value;
 	new_top->position = 0;
-	new_top->status = 0;
 	new_top->prev = NULL;
 	new_top->next = *stack;
 	if (*stack)
@@ -56,7 +55,6 @@ void	add_at_bot(t_stack **stack, int value)
 		return ;
 	new_bot->value = value;
 	new_bot->position = 0;
-	new_bot->status = 0;
 	new_bot->next = NULL;
 	new_bot->prev = NULL;
 	if (!*stack)
@@ -85,18 +83,18 @@ int	get_min_value(t_stack *stack_a)
 	return (min_value);
 }
 
-int	get_lowest_position(t_stack **stack_b)
+int	get_max(t_stack **stack)
 {
 	t_stack	*layer;
-	int		lowest;
+	int		max;
 
-	layer = *stack_b;
-	lowest = layer->position;
-	while (layer)
+	layer = *stack;
+	max = layer->position;
+	while (layer->next)
 	{
-		if (layer->position < lowest)
-			lowest = layer->position;
 		layer = layer->next;
+		if (layer->position > max)
+			max = layer->position;
 	}
-	return (lowest);
+	return (max);
 }

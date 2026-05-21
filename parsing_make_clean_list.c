@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_make_clean_list.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sitrakaa <sitrakaa@student.42antananari    +#+  +:+       +#+        */
+/*   By: manoaran <manoaran@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 10:59:28 by manoaran          #+#    #+#             */
-/*   Updated: 2026/05/18 18:56:25 by sitrakaa         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:09:00 by manoaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	**make_clean_arg_list(int argc, char **argv)
 		exit(0);
 	list = malloc(sizeof(char *) * (safe_space(argc, argv) + 1));
 	if (!list)
-		error_exit(NULL, "Error: malloc failed\n");
+		error_exit(NULL, "Error\nmalloc failed\n");
 	make_clean_loop(argc, argv, &list);
 	if (!list[0])
 	{
